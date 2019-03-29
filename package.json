@@ -1,0 +1,29 @@
+{
+  "name": "cors-server",
+  "version": "1.0.0",
+  "description": "Self-hosted cors-server",
+  "main": "index.js",
+  "scripts": {
+    "test": "exit 0;"
+  },
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RomiC/cors-server.git"
+  },
+  "keywords": [
+    "cors",
+    "proxy"
+  ],
+  "author": "Roman Charugin <i@charugin.ru>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RomiC/cors-server/issues"
+  },
+  "homepage": "https://github.com/RomiC/cors-server#readme",
+  "dependencies": {
+    "node-fetch": "^2.3.0"
+  }
+}
