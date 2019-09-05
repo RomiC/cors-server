@@ -27,7 +27,9 @@ http
       response.statusCode = fetchResponse.status;
 
       for (const headerName of fetchResponse.headers.keys()) {
-        response.setHeader(headerName, fetchResponse.headers.get(headerName));
+        if (headerName !== 'Access-Control-Allow-Origin' && headerName !== 'Access-Control-Allow-Credentials') {
+          response.setHeader(headerName, fetchResponse.headers.get(headerName));
+        }
       }
 
       response.setHeader('Access-Control-Allow-Origin', '*');
