@@ -1,4 +1,4 @@
-# CORS-server
+# CORS-server ![Publish to CR](https://github.com/RomiC/cors-server/workflows/Publish%20to%20CR/badge.svg)
 
 It's simple nodejs server, which main functionality is proxying any request and adding CORS-headers to the reponse. To run server, just tun the following command in your console:
 
