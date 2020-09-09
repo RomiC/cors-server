@@ -1,0 +1,30 @@
+name: Publish to CR
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  publish:
+    name: Publish to container registry
+    runs-on: ubuntu-18.04
+    steps:
+      - env:
+        CR_PAT: ${{ CR_PAT }}
+      - uses: actions/checkout@v2
+      - run: echo $CR_PAT | docker login docker.pkg.github.com -u RomiC --password-stdin
+      - run: echo $CR_PAT | docker login ghcr.io -u RomiC --password-stdin
+      - run: docker build --rm --no-cache \
+          -t nginx-cors:$(npm view cors-server version) \
+          -t nginx-cors:latest \
+          -t docker.pkg.github.com/RomiC/cors-server/nginx-cors:$(npm view cors-server version) \
+          -t docker.pkg.github.com/RomiC/cors-server/nginx-cors:latest \
+          -t ghcr.io/RomiC/cors-server/nginx-cors:$(npm view cors-server version) \
+          -t ghcr.io/RomiC/cors-server/nginx-cors:latest .
+      - run: docker push nginx-cors:$(npm view cors-server version) && \
+          docker push nginx-cors:latest && \
+          docker push docker.pkg.github.com/RomiC/cors-server/nginx-cors:$(npm view cors-server version) && \
+          docker push docker.pkg.github.com/RomiC/cors-server/nginx-cors:latest && \
+          docker push ghcr.io/RomiC/cors-server/nginx-cors:$(npm view cors-server version) && \
+          docker push ghcr.io/RomiC/cors-server/nginx-cors:latest
+      
